@@ -2,21 +2,36 @@ package com.example.patientdb;
 import java.util.*;
 
 public class Patient {
-    String last;
-    String first;
-    int age;
-    public Patient (String l, String f, int a) {
-        last = l;
-        first = f;
+    private String firstName, lastName;
+    private int age;
+    private int whiteCellCount;
+    private Date createdTime;
+
+    public Patient(String fn, String ln, int a, int whiteCell){
+        createdTime = new Date();
+        firstName = fn;
+        lastName = ln;
         age = a;
+        whiteCellCount = whiteCell;
     }
-    public String getLast() {
-        return last;
+
+    public int getWCellCount(){
+        return whiteCellCount;
     }
-    public String getFirst() {
-        return first;
-    }
-    public int getAge() {
+
+    public int getAge(){
         return age;
+    }
+
+    public void getOlder(){
+        age++;
+    }
+
+    public Date getCreation() {
+        return createdTime;
+    }
+
+    public String toString(){
+        return lastName+", "+firstName+" ("+age+"): WBCC: "+whiteCellCount;
     }
 }
