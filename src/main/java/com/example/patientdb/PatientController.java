@@ -1,5 +1,6 @@
 package com.example.patientdb;
 
+import java.io.*;
 import java.lang.*;
 import java.util.*;
 import javafx.fxml.FXML;
@@ -7,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.*;
 import javafx.collections.*;
+import java.nio.file.*;
 
 import static java.lang.Integer.decode;
 
@@ -33,12 +35,8 @@ public class PatientController {
     List patientList = new ArrayList();
 
     public void initialize() {
-
-        patientList.add(new Patient("Alison", "Apple", 49, 5000));
-        patientList.add(new Patient("Bill", "Baker", 18, 1001));
-        patientList.add(new Patient("Curt", "Cartwright", 37, 10500));
-        patientList.add(new Patient("Dilan", "Dolan", 76, 789));
-
+        Path p = new Path("t.ser");
+        if (!exists())
         refresh();
     }
 
@@ -83,7 +81,9 @@ public class PatientController {
         Optional<String> b = bin.showAndWait();
         int bs = decode(b.get());
 
-        patientList.add(new Patient(fs, ls, as, bs));
+        Patient n = new Patient(fs, ls, as, bs);
+        patientList.add(n);
+
         refresh();
     }
 }
