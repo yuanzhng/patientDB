@@ -35,9 +35,35 @@ public class PatientController {
     List patientList = new ArrayList();
 
     public void initialize() {
-        Path p = new Path("t.ser");
-        if (!exists())
-        refresh();
+
+        List n = new ArrayList();
+        try {
+            File myObj = new File("data.ser");
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                try {
+                    FileInputStream fileIn = new FileInputStream("data.ser");
+                    ObjectInputStream in = new ObjectInputStream(fileIn);
+                    n = (ArrayList) in.readObject();
+                    in.close();
+                    fileIn.close();
+                } catch (IOException i) {
+                    i.printStackTrace();
+                    return;
+                } catch (ClassNotFoundException c) {
+                    System.out.println("Patient class not found");
+                    c.printStackTrace();
+                    return;
+                }
+                patientList = n;
+                refresh();
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred while creating file.");
+            e.printStackTrace();
+        }
+
     }
 
     public void refresh() {
@@ -62,7 +88,7 @@ public class PatientController {
         fin.setHeaderText("Please enter patient's information.");
         fin.setContentText("First name:");
 
-        Optional<String> f = lin.showAndWait();
+        Optional<String> f = fin.showAndWait();
         String fs = f.get();
 
         TextInputDialog ain = new TextInputDialog("");
@@ -83,6 +109,20 @@ public class PatientController {
 
         Patient n = new Patient(fs, ls, as, bs);
         patientList.add(n);
+
+        try {
+            FileOutputStream fileOut =
+                    new FileOutputStream("data.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(patientList);
+            out.close();
+            fileOut.close();
+            System.out.printf("Serialized data is saved in data.ser");
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
+
+
 
         refresh();
     }

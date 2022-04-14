@@ -1,7 +1,7 @@
 package com.example.patientdb;
 import java.util.*;
 
-public class Patient {
+public class Patient implements java.io.Serializable{
     private String firstName, lastName;
     private int age;
     private int whiteCellCount;
