@@ -9,7 +9,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="284.0" prefWidth="361.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.patientdb.PatientController">
    <children>
-      <TableView fx:id="table" layoutY="52.0" prefHeight="232.0" prefWidth="361.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+      <TableView fx:id="table" layoutY="52.0" onMouseClicked="#gotoEdit" prefHeight="232.0" prefWidth="361.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
         <columns>
           <TableColumn fx:id="lastclm" prefWidth="75.0" text="Last" />
             <TableColumn fx:id="firstclm" prefWidth="75.0" text="First" />

@@ -13,20 +13,22 @@ public class PatientApplication extends Application {
     @Override
     public void start(Stage s) throws IOException {
         this.stage = s;
-        FXMLLoader fxmlLoader = new FXMLLoader(PatientApplication.class.getResource("patientlist-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        FXMLLoader loader = new FXMLLoader(PatientApplication.class.getResource("patientlist-view.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
         stage.setTitle("PatientDB");
         stage.setScene(scene);
         stage.show();
     }
-    public void switchToEditor() throws IOException {
+
+    public static void switchToEditor(Patient p) throws IOException {
         FXMLLoader loader = new FXMLLoader(PatientApplication.class.getResource("patienteditor-view.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        PatientController patientController = loader.getController();
+        PatientViewController patientViewController = loader.getController();
         stage.setScene(scene);
+        stage.show();
     }
-
     public static void main(String[] args) {
         launch();
     }

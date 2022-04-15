@@ -4,11 +4,9 @@ import java.io.*;
 import java.lang.*;
 import java.util.*;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.*;
 import javafx.collections.*;
-import java.nio.file.*;
 
 import static java.lang.Integer.decode;
 
@@ -66,6 +64,13 @@ public class PatientController {
 
     }
 
+    @FXML
+    public void gotoEdit() throws IOException {
+        Patient p = (Patient) table.getSelectionModel().getSelectedItem();
+        PatientApplication.switchToEditor(p);
+    }
+
+    @FXML
     public void refresh() {
         lastclm.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         firstclm.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -74,6 +79,7 @@ public class PatientController {
         table.setItems(FXCollections.observableList(patientList));
     }
 
+    @FXML
     public void addPatient() {
         TextInputDialog lin = new TextInputDialog("");
         lin.setTitle("Add patient");
@@ -121,8 +127,6 @@ public class PatientController {
         } catch (IOException i) {
             i.printStackTrace();
         }
-
-
 
         refresh();
     }
