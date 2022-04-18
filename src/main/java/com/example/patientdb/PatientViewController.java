@@ -10,8 +10,30 @@ import javafx.collections.*;
 
 import static java.lang.Integer.decode;
 
-public class PatientViewController {
-    public void initialize() {
 
+
+public class PatientViewController {
+
+    @FXML
+    private Button donebtn;
+
+    @FXML
+    private TextField fnfld;
+
+    @FXML
+    private TextField lnfld;
+
+    @FXML
+    private TextField agefld;
+
+    @FXML
+    private TextField wbcfld;
+
+    public void initialize(Patient p) {
+    }
+    public void done(Patient p) {
+        p.setFirstName(fnfld.getText());
+        p.setLastName(lnfld.getText());
+        p.setAge(fnfld.get);
     }
 }

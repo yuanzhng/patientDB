@@ -36,12 +36,12 @@ public class PatientController {
 
         List n = new ArrayList();
         try {
-            File myObj = new File("data.ser");
+            File myObj = new File(System.getProperty("user.home")+"/.data.ser");
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {
                 try {
-                    FileInputStream fileIn = new FileInputStream("data.ser");
+                    FileInputStream fileIn = new FileInputStream(System.getProperty("user.home")+"/.data.ser");
                     ObjectInputStream in = new ObjectInputStream(fileIn);
                     n = (ArrayList) in.readObject();
                     in.close();
@@ -118,12 +118,12 @@ public class PatientController {
 
         try {
             FileOutputStream fileOut =
-                    new FileOutputStream("data.ser");
+                    new FileOutputStream(System.getProperty("user.home")+"/.data.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(patientList);
             out.close();
             fileOut.close();
-            System.out.printf("Serialized data is saved in data.ser");
+            System.out.printf("Serialized data is saved in " + System.getProperty("user.home") + "/.data.ser");
         } catch (IOException i) {
             i.printStackTrace();
         }

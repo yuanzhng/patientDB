@@ -27,8 +27,20 @@ public class Patient implements java.io.Serializable{
         return firstName;
     }
 
+    public void setFirstName(String i) {
+        this.firstName = i;
+    }
+
     public String getLastName(){
         return lastName;
+    }
+
+    public void setLastName(String i) {
+        this.lastName = i;
+    }
+
+    public void setAge(int i) {
+        this.age = i;
     }
 
     public int getWhiteCellCount(){
