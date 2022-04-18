@@ -29,6 +29,15 @@ public class PatientApplication extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
+    public static void switchToMain() throws IOException {
+        FXMLLoader loader = new FXMLLoader(PatientApplication.class.getResource("patientlist-view.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        PatientViewController patientViewController = loader.getController();
+        stage.setScene(scene);
+        stage.show();
+    }
     public static void main(String[] args) {
         launch();
     }

@@ -30,10 +30,13 @@ public class PatientViewController {
     private TextField wbcfld;
 
     public void initialize(Patient p) {
+
     }
-    public void done(Patient p) {
+    public void done(Patient p) throws IOException {
         p.setFirstName(fnfld.getText());
         p.setLastName(lnfld.getText());
-        p.setAge(fnfld.get);
+        p.setAge(Integer.parseInt(agefld.getText()));
+        PatientApplication.switchToMain();
+
     }
 }
