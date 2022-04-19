@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="273.0" prefWidth="274.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.patientdb.PatientViewController">
    <children>
       <Label layoutX="67.0" layoutY="28.0" text="Edit Patient">
@@ -14,9 +13,9 @@
             <Font size="26.0" />
          </font>
       </Label>
-      <TextField layoutX="54.0" layoutY="79.0" promptText="First Name" />
-      <TextField layoutX="54.0" layoutY="124.0" promptText="Last Name" />
-      <TextField layoutX="54.0" layoutY="168.0" promptText="Age" />
-      <Button layoutX="161.0" layoutY="216.0" mnemonicParsing="false" text="Done" />
+      <TextField fx:id="fnfld" layoutX="54.0" layoutY="79.0" promptText="First Name" />
+      <TextField fx:id="lnfld" layoutX="54.0" layoutY="124.0" promptText="Last Name" />
+      <TextField fx:id="agefld" layoutX="54.0" layoutY="168.0" promptText="Age" />
+      <Button fx:id="donebtn" layoutX="161.0" layoutY="216.0" mnemonicParsing="false" onAction="#done" text="Done" />
    </children>
 </AnchorPane>

@@ -61,7 +61,6 @@ public class PatientController {
             System.out.println("An error occurred while creating file.");
             e.printStackTrace();
         }
-
     }
 
     @FXML
@@ -116,6 +115,11 @@ public class PatientController {
         Patient n = new Patient(fs, ls, as, bs);
         patientList.add(n);
 
+        upload();
+        refresh();
+    }
+
+    public void upload() {
         try {
             FileOutputStream fileOut =
                     new FileOutputStream(System.getProperty("user.home")+"/.data.ser");
@@ -123,11 +127,9 @@ public class PatientController {
             out.writeObject(patientList);
             out.close();
             fileOut.close();
-            System.out.printf("Serialized data is saved in " + System.getProperty("user.home") + "/.data.ser");
+            System.out.printf("Serialized data is saved in " + System.getProperty("user.home") + "/.data.ser\n");
         } catch (IOException i) {
             i.printStackTrace();
         }
-
-        refresh();
     }
 }

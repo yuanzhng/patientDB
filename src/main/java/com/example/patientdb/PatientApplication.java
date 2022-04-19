@@ -26,6 +26,7 @@ public class PatientApplication extends Application {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         PatientViewController patientViewController = loader.getController();
+        patientViewController.initialize(p);
         stage.setScene(scene);
         stage.show();
     }
@@ -34,7 +35,9 @@ public class PatientApplication extends Application {
         FXMLLoader loader = new FXMLLoader(PatientApplication.class.getResource("patientlist-view.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        PatientViewController patientViewController = loader.getController();
+        PatientController patientController = loader.getController();
+        patientController.upload();
+        patientController.refresh();
         stage.setScene(scene);
         stage.show();
     }
