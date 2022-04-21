@@ -10,35 +10,36 @@ import java.io.IOException;
 
 public class PatientApplication extends Application {
     public static Stage stage;
+    public static Scene patientScene;
+    public static Scene tableScene;
+    public static FXMLLoader mainLoader;
+    public static FXMLLoader editLoader;
+
     @Override
     public void start(Stage s) throws IOException {
         this.stage = s;
-        FXMLLoader loader = new FXMLLoader(PatientApplication.class.getResource("patientlist-view.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setTitle("PatientDB");
-        stage.setScene(scene);
+        mainLoader = new FXMLLoader(PatientApplication.class.getResource("patientlist-view.fxml"));
+        Parent root = mainLoader.load();
+        patientScene = new Scene(root);
+        stage.setScene(patientScene);
         stage.show();
     }
 
     public static void switchToEditor(Patient p) throws IOException {
-        FXMLLoader loader = new FXMLLoader(PatientApplication.class.getResource("patienteditor-view.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        PatientViewController patientViewController = loader.getController();
-        patientViewController.initialize(p);
-        stage.setScene(scene);
+        editLoader = new FXMLLoader(PatientApplication.class.getResource("patienteditor-view.fxml"));
+        Parent root = editLoader.load();
+        tableScene = new Scene(root);
+        PatientViewController patientViewController = editLoader.getController();
+        patientViewController.setPatient(p);
+        stage.setScene(tableScene);
         stage.show();
     }
 
     public static void switchToMain() throws IOException {
-        FXMLLoader loader = new FXMLLoader(PatientApplication.class.getResource("patientlist-view.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        PatientController patientController = loader.getController();
+        PatientController patientController = mainLoader.getController();
         patientController.upload();
         patientController.refresh();
-        stage.setScene(scene);
+        stage.setScene(patientScene);
         stage.show();
     }
     public static void main(String[] args) {

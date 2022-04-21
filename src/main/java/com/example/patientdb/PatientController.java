@@ -30,7 +30,7 @@ public class PatientController {
     @FXML
     private TableView table;
 
-    List patientList = new ArrayList();
+    public List patientList = new ArrayList();
 
     public void initialize() {
 
@@ -55,7 +55,11 @@ public class PatientController {
                     return;
                 }
                 patientList = n;
-                refresh();
+                lastclm.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+                firstclm.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+                ageclm.setCellValueFactory(new PropertyValueFactory<>("age"));
+                cellclm.setCellValueFactory(new PropertyValueFactory<>("whiteCellCount"));
+                table.setItems(FXCollections.observableList(patientList));
             }
         } catch (IOException e) {
             System.out.println("An error occurred while creating file.");
@@ -71,11 +75,7 @@ public class PatientController {
 
     @FXML
     public void refresh() {
-        lastclm.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-        firstclm.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        ageclm.setCellValueFactory(new PropertyValueFactory<>("age"));
-        cellclm.setCellValueFactory(new PropertyValueFactory<>("whiteCellCount"));
-        table.setItems(FXCollections.observableList(patientList));
+        table.refresh();
     }
 
     @FXML

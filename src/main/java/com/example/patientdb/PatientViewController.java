@@ -29,23 +29,28 @@ public class PatientViewController {
     @FXML
     private TextField wbcfld;
 
+    public Patient c;
 
     @FXML
-    public void initialize(Patient p) {
-        fnfld.setText(p.getFirstName());
-        lnfld.setText(p.getLastName());
-        agefld.setText(Integer.toString(p.getAge()));
+    public void initialize() {
+
     }
-    @FXML
+    public void setPatient(Patient p) {
+        this.c = p;
+        fnfld.setText(c.getFirstName());
+        lnfld.setText(c.getLastName());
+        agefld.setText(Integer.toString(c.getAge()));
+    }
+
     public void done() throws IOException {
-        p.setFirstName(fnfld.getText());
-        p.setLastName(lnfld.getText());
-        p.setAge(Integer.parseInt(agefld.getText()));
+        c.setFirstName(fnfld.getText());
+        c.setLastName(lnfld.getText());
+        c.setAge(Integer.parseInt(agefld.getText()));
+
         try {
             PatientApplication.switchToMain();
         } catch (IOException e) {
-
+            e.printStackTrace();
         }
-
     }
 }
