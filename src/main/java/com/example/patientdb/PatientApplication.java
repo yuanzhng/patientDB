@@ -12,8 +12,12 @@ public class PatientApplication extends Application {
     public static Stage stage;
     public static Scene patientScene;
     public static Scene tableScene;
+    public static Scene settingsScene;
+    public static Scene graphScene;
     public static FXMLLoader mainLoader;
     public static FXMLLoader editLoader;
+    public static FXMLLoader settingsLoader;
+    public static FXMLLoader graphLoader;
 
     @Override
     public void start(Stage s) throws IOException {
@@ -35,11 +39,29 @@ public class PatientApplication extends Application {
         stage.show();
     }
 
+    public static void switchToSettings() throws IOException {
+        settingsLoader = new FXMLLoader(PatientApplication.class.getResource("settings-view.fxml"));
+        Parent root = settingsLoader.load();
+        settingsScene = new Scene(root);
+        stage.setScene(settingsScene);
+        stage.show();
+    }
+
+
     public static void switchToMain() throws IOException {
         PatientController patientController = mainLoader.getController();
         patientController.upload();
         patientController.refresh();
+        patientController.setTitleFontSize();
         stage.setScene(patientScene);
+        stage.show();
+    }
+
+    public static void switchToGraph() throws IOException {
+        graphLoader = new FXMLLoader(PatientApplication.class.getResource("graph-view.fxml"));
+        Parent root = graphLoader.load();
+        graphScene = new Scene(root);
+        stage.setScene(graphScene);
         stage.show();
     }
     public static void main(String[] args) {

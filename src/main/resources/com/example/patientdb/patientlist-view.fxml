@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="284.0" prefWidth="361.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.patientdb.PatientController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="284.0" prefWidth="361.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.patientdb.PatientController">
    <children>
       <TableView fx:id="table" layoutY="52.0" onMouseClicked="#gotoEdit" prefHeight="232.0" prefWidth="361.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
         <columns>
@@ -20,11 +20,13 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button layoutX="304.0" layoutY="12.0" mnemonicParsing="false" onAction="#addPatient" text="New" AnchorPane.rightAnchor="12.5" AnchorPane.topAnchor="12.0" />
-      <Label layoutX="11.0" layoutY="11.0" text="PatientDB" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="11.0">
+      <Button fx:id="newbtn" layoutX="304.0" layoutY="12.0" mnemonicParsing="false" onAction="#addPatient" text="New" AnchorPane.rightAnchor="12.5" AnchorPane.topAnchor="12.0" />
+      <Label fx:id="title" layoutX="11.0" layoutY="11.0" text="PatientDB" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="11.0">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
+      <Button layoutX="240.0" layoutY="12.0" mnemonicParsing="false" onAction="#gotoSettings" text="Settings" />
+      <Button fx:id="graphbtn" layoutX="181.0" layoutY="12.0" mnemonicParsing="false" onAction="#gotoGraph" text="Graph" />
    </children>
 </AnchorPane>

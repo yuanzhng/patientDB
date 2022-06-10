@@ -7,11 +7,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.*;
 import javafx.collections.*;
+import javafx.scene.text.Font;
 
 import static java.lang.Integer.decode;
 
 public class PatientController {
-
+    @FXML
+    private Button graphbtn;
     @FXML
     private Button newbtn;
 
@@ -30,11 +32,21 @@ public class PatientController {
     @FXML
     private TableView table;
 
-    public List patientList = new ArrayList();
+    @FXML
+    private Label title;
 
+    public static ArrayList patientList = new ArrayList<Patient>();
+
+    public static ArrayList getPL() {
+        return patientList;
+    }
+
+    public static void setPL(ArrayList a) {
+        patientList = a;
+    }
     public void initialize() {
-
-        List n = new ArrayList();
+        setTitleFontSize();
+        ArrayList n = new ArrayList();
         try {
             File myObj = new File(System.getProperty("user.home")+"/.data.ser");
             if (myObj.createNewFile()) {
@@ -54,7 +66,7 @@ public class PatientController {
                     c.printStackTrace();
                     return;
                 }
-                patientList = n;
+                setPL(n);
                 lastclm.setCellValueFactory(new PropertyValueFactory<>("lastName"));
                 firstclm.setCellValueFactory(new PropertyValueFactory<>("firstName"));
                 ageclm.setCellValueFactory(new PropertyValueFactory<>("age"));
@@ -68,13 +80,33 @@ public class PatientController {
     }
 
     @FXML
+    public void setTitleFontSize() {
+        title.setFont(new Font(Settings.getFSize()));
+    }
+
+    @FXML
     public void gotoEdit() throws IOException {
         Patient p = (Patient) table.getSelectionModel().getSelectedItem();
         PatientApplication.switchToEditor(p);
     }
+    @FXML
+    public void gotoSettings() throws IOException {
+        PatientApplication.switchToSettings();
+    }
+
+    @FXML
+    public void gotoGraph() throws IOException {
+        PatientApplication.switchToGraph();
+
+    }
 
     @FXML
     public void refresh() {
+        lastclm.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        firstclm.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        ageclm.setCellValueFactory(new PropertyValueFactory<>("age"));
+        cellclm.setCellValueFactory(new PropertyValueFactory<>("whiteCellCount"));
+        table.setItems(FXCollections.observableList(patientList));
         table.refresh();
     }
 
@@ -118,7 +150,6 @@ public class PatientController {
         upload();
         refresh();
     }
-
     public void upload() {
         try {
             FileOutputStream fileOut =
@@ -132,4 +163,5 @@ public class PatientController {
             i.printStackTrace();
         }
     }
+
 }
